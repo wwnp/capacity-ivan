@@ -931,9 +931,12 @@ module.exports = g;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/modals */ "./src/js/modules/modals.js");
+/* harmony import */ var _modules_sliders__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/sliders */ "./src/js/modules/sliders.js");
+
 
 window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  Object(_modules_sliders__WEBPACK_IMPORTED_MODULE_1__["default"])('.feedback-slider-item', '', '.main-prev-btn', '.main-next-btn');
 });
 
 /***/ }),
@@ -1060,6 +1063,73 @@ var modals = function modals() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (modals);
+
+/***/ }),
+
+/***/ "./src/js/modules/sliders.js":
+/*!***********************************!*\
+  !*** ./src/js/modules/sliders.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var sliders = function sliders(slides, dir, prev, next) {
+  var slideIndex = 1;
+  var items = document.querySelectorAll(slides);
+
+  function showSlides(n) {
+    console.log(slideIndex);
+    debugger;
+
+    if (n > items.length) {
+      console.log(123);
+      slideIndex = 1;
+    } // крайние значения
+
+
+    if (n < 1) {
+      console.log(456);
+      slideIndex = items.length;
+    } // крайние значения
+
+
+    items.forEach(function (i) {
+      i.classList.add('animated', 'fadeIn');
+      i.style.display = 'none';
+    });
+    items[slideIndex - 1].style.display = 'block';
+  }
+
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  try {
+    var prevBtn = document.querySelector(prev);
+    var nextBtn = document.querySelector(next);
+    prevBtn.addEventListener('click', function () {
+      debugger;
+      plusSlides(-1);
+      items[slideIndex - 1].classList.remove('slideInRight');
+      items[slideIndex - 1].classList.add('slideInLeft');
+    });
+    nextBtn.addEventListener('click', function () {
+      plusSlides(1);
+      items[slideIndex - 1].classList.remove('slideInLeft');
+      items[slideIndex - 1].classList.add('slideInRight');
+    });
+  } catch (error) {}
+
+  showSlides(slideIndex);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (sliders);
 
 /***/ })
 

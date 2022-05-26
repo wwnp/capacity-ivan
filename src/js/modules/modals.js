@@ -115,7 +115,7 @@ const modals = () => {
   }
 
 
-  bindModal('.button-design', '.popup-design', '.popup-design .popup-close', true, true)
+  bindModal('.button-design', '.popup-design', '.popup-design .popup-close')
 
   bindModal('.fixed-gift', '.popup-gift', '.popup-gift .popup-close', true, true)
 

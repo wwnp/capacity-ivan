@@ -1,7 +1,6 @@
 const sliders = (slides, dir, prev, next) => {
   let slideIndex = 1
   let paused = false
-
   const items = document.querySelectorAll(slides)
 
   function showSlides(n) {
@@ -43,7 +42,7 @@ const sliders = (slides, dir, prev, next) => {
     clearInterval(paused)
   })
   items[0].parentNode.addEventListener('mouseleave', () => {
-    activateAnimation()
+    // activateAnimation()
   })
 
   try {
@@ -64,6 +63,6 @@ const sliders = (slides, dir, prev, next) => {
   }
 
   showSlides(slideIndex)
-  activateAnimation()
+  // activateAnimation()
 }
 export default sliders

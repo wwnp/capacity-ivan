@@ -1,18 +1,16 @@
 const sliders = (slides, dir, prev, next) => {
   let slideIndex = 1
+  let paused = false
+
   const items = document.querySelectorAll(slides)
 
   function showSlides(n) {
-    console.log(slideIndex)
-    debugger
     if (n > items.length) {
-      console.log(123)
       slideIndex = 1
-    } // крайние значения
+    }
     if (n < 1) {
-      console.log(456)
       slideIndex = items.length
-    } // крайние значения
+    }
 
     items.forEach(i => {
       i.classList.add('animated', 'fadeIn')
@@ -23,16 +21,36 @@ const sliders = (slides, dir, prev, next) => {
   }
 
   function plusSlides(n) {
-
     showSlides(slideIndex += n)
   }
+
+  function activateAnimation() {
+    if (dir === 'vertical') {
+      paused = setInterval(function () {
+        plusSlides(1)
+        items[slideIndex - 1].classList.add('slideInUp')
+      }, 3000)
+    } else {
+      paused = setInterval(function () {
+        plusSlides(1)
+        items[slideIndex - 1].classList.remove('slideInLeft')
+        items[slideIndex - 1].classList.add('slideInRight')
+      }, 3000)
+    }
+  }
+
+  items[0].parentNode.addEventListener('mouseenter', () => {
+    clearInterval(paused)
+  })
+  items[0].parentNode.addEventListener('mouseleave', () => {
+    activateAnimation()
+  })
 
   try {
     const prevBtn = document.querySelector(prev)
     const nextBtn = document.querySelector(next)
 
     prevBtn.addEventListener('click', () => {
-      debugger
       plusSlides(-1)
       items[slideIndex - 1].classList.remove('slideInRight')
       items[slideIndex - 1].classList.add('slideInLeft')
@@ -43,9 +61,9 @@ const sliders = (slides, dir, prev, next) => {
       items[slideIndex - 1].classList.add('slideInRight')
     })
   } catch (error) {
-
   }
 
   showSlides(slideIndex)
+  activateAnimation()
 }
 export default sliders

@@ -109,18 +109,21 @@ const modals = () => {
 
       if (!isBtnPressed && (scrolledAndCurrContent >= fullPageHeight)) {
         trigger.click()
-        // window.onscroll = null
       }
+
     })
   }
 
-  bindModal('.button-design', '.popup-design', '.popup-design .popup-close')
+
+  bindModal('.button-design', '.popup-design', '.popup-design .popup-close', true, true)
 
   bindModal('.fixed-gift', '.popup-gift', '.popup-gift .popup-close', true, true)
 
   bindModal('.button-consultation', '.popup-consultation', '.popup-consultation .popup-close')
 
   openByScrollAtBottom('.fixed-gift')
+
+
   // showPopupByTime('.popup-consultation', 2000)
 }
 export default modals

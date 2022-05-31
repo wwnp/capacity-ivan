@@ -123,7 +123,6 @@ const modals = () => {
 
   openByScrollAtBottom('.fixed-gift')
 
-
-  // showPopupByTime('.popup-consultation', 2000)
+  showPopupByTime('.popup-consultation', 2000)
 }
 export default modals

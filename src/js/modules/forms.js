@@ -41,7 +41,6 @@ const forms = () => {
         ? dots = '...'
         : dots = '.'
       const array = item.files[0].name.split('.')
-      console.log(array)
       const name = array[0].substring(0, 6) + dots + array[1]
 
       item.previousElementSibling.textContent = name
@@ -79,7 +78,6 @@ const forms = () => {
 
       postData(api, formData)
         .then(res => {
-          console.log(res)
           statusImg.setAttribute('src', msg.ok)
           statusText.textContent = msg.success
         })
@@ -98,9 +96,6 @@ const forms = () => {
         })
     })
   })
-
-  console.log(document.body.scrollHeight)
-
 }
 
 export default forms
